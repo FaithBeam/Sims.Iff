@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <RootNamespace>sims_iff</RootNamespace>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <LangVersion>default</LangVersion>
+        <Version>0.1.1</Version>
+        <Title>Sims.Iff</Title>
+        <Authors>FaithBeam</Authors>
+        <Description>Edit The Sims 1 .iff files.</Description>
+        <PackageProjectUrl>https://github.com/FaithBeam/Sims.Iff</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/FaithBeam/Sims.Iff</RepositoryUrl>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <None Remove="work.iff" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="SharpBitStream" Version="1.0.0" />
+    </ItemGroup>
+
+</Project>
