@@ -3,16 +3,10 @@ using sims_iff.Enums;
 
 namespace sims_iff.Models.ResourceContent;
 
-public class TypeCode
+public class TypeCode(string value, Endianness endianness = Endianness.Little)
 {
-    public string Value { get; init; }
-    public Endianness Endianness { get; init; }
-
-    private TypeCode(string value, Endianness endianness = Endianness.Little)
-    {
-        Value = value;
-        Endianness = endianness;
-    }
+    public string Value { get; init; } = value;
+    public Endianness Endianness { get; init; } = endianness;
 
     public static TypeCode Read(Stream stream)
     {
