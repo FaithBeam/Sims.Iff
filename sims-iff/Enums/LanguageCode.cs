@@ -1,6 +1,6 @@
 ﻿namespace sims_iff.Enums;
 
-public enum LanguageCode
+public enum LanguageCode : byte
 {
     Default,
     UsEnglish,

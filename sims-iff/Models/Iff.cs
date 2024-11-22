@@ -12,7 +12,7 @@ public class Iff(string signature, int offsetToResourceMap, List<Resource> resou
     {
         using var fs = File.Create(path);
         fs.WriteString(Signature);
-        fs.WriteInt32(OffsetToResourceMap, Endianness.Big);
+        fs.Position += 4;
         foreach (var resource in Resources)
         {
             resource.Write(stream: fs);

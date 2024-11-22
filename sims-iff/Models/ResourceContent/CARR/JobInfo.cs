@@ -29,7 +29,8 @@ public class JobInfo(
     string maleUniformMesh,
     string femaleUniformMesh,
     string uniformSkin,
-    string unknown4)
+    string unknown4
+)
 {
     public static JobInfo Read(long startingPosition, Stream stream, BitStream bs)
     {
@@ -154,9 +155,6 @@ public class JobInfo(
         StartTime.Write(bs);
         EndTime.Write(bs);
         new Field((int)CarType).Write(bs);
-
-        // stream.Position++;
-        // bs.SetPosition(new Position(stream.Position, 0));
 
         stream.WriteString(JobName + char.MinValue);
         WritePadding(startPosition, stream);

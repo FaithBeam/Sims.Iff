@@ -6,7 +6,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <LangVersion>default</LangVersion>
-        <Version>0.2.0</Version>
+        <Version>0.2.1</Version>
         <Title>Sims.Iff</Title>
         <Authors>FaithBeam</Authors>
         <Description>Edit The Sims 1 .iff files.</Description>

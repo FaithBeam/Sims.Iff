@@ -20,6 +20,7 @@ public class TypeList(TypeCode typeCode, int numberListEntries, List<ListEntry> 
         {
             listEntries.Add(ListEntry.Load(stream, version));
 
+            // TODO SUSPECT
             // version 0 fields are aligned on even boundaries. Move the stream position.
             if (version == 0 && stream.Position % 2 != 0)
             {

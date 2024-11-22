@@ -32,12 +32,9 @@ public class Fdff(
             csp.Write(stream);
         }
 
-        if (ExtraData is not null)
+        foreach (var b in ExtraData)
         {
-            foreach (var b in ExtraData)
-            {
-                stream.WriteByte((byte)b);
-            }
+            stream.WriteByte((byte)b);
         }
     }
 

@@ -1,6 +1,6 @@
 ﻿namespace sims_iff.Enums;
 
-public enum StrFormat
+public enum StrFormat : short
 {
     Zero = 0,
     Ffff = -1,

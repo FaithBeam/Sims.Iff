@@ -41,8 +41,16 @@ public class Resource(
 
     public void Write(Stream stream)
     {
+        if (TypeCode.Value == "rsmp")
+        {
+            var curPos = stream.Position;
+            stream.Position = 60;
+            stream.WriteInt32((int)curPos, Endianness.Big);
+            stream.Position = curPos;
+        }
         TypeCode.Write(stream);
-        stream.WriteInt32(Size, endianness: Endianness.Big);
+        var sizePosition = stream.Position;
+        stream.Position += sizeof(int); // move forward over the to be written size bytes
         stream.WriteUInt16(Id, Endianness.Big);
         stream.WriteUInt16(Flags, Endianness.Big);
         var nameBytes = Encoding.UTF8.GetBytes(Name);
@@ -57,7 +65,13 @@ public class Resource(
         {
             stream.WriteString(Name);
         }
+        var beginResourcePosition = stream.Position;
         Content.Write(stream);
+        var endResourcePosition = stream.Position;
+        var calculatedSize = (int)(endResourcePosition - beginResourcePosition + 76);
+        stream.Position = sizePosition;
+        stream.WriteInt32(calculatedSize, endianness: Endianness.Big);
+        stream.Position = endResourcePosition;
     }
 
     private static IResourceContent ReadResourceContent(
