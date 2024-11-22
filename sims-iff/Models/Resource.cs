@@ -37,10 +37,12 @@ public class Resource(
     public ushort Id { get; set; } = id;
     public ushort Flags { get; set; } = flags;
     public string Name { get; set; } = name;
+    public long WrittenOffset { get; set; }
     public IResourceContent Content { get; set; } = content;
 
     public void Write(Stream stream)
     {
+        WrittenOffset = stream.Position;
         if (TypeCode.Value == "rsmp")
         {
             var curPos = stream.Position;
@@ -71,6 +73,12 @@ public class Resource(
         var calculatedSize = (int)(endResourcePosition - beginResourcePosition + 76);
         stream.Position = sizePosition;
         stream.WriteInt32(calculatedSize, endianness: Endianness.Big);
+        if (TypeCode.Value == "rsmp")
+        {
+            // write resource map content size
+            stream.Position = WrittenOffset + 88;
+            stream.WriteInt32(calculatedSize);
+        }
         stream.Position = endResourcePosition;
     }
 

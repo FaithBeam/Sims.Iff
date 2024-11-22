@@ -45,7 +45,7 @@ public class ResourceMap(
         stream.WriteInt32(Field1);
         stream.WriteInt32(Version);
         stream.WriteInt32(Pmsr);
-        stream.WriteInt32(Size);
+        stream.Position += 4;
         stream.WriteInt32(NumberOfTypes);
         foreach (var typeList in TypeLists)
         {

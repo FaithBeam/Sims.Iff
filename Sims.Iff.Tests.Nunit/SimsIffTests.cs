@@ -20,12 +20,14 @@ public class SimsIffTests
     {
         var path = "work.iff";
         var iff = Iff.Read(path);
-        var carrs = iff
-            .Resources.Where(r => r.TypeCode.Value == "CARR")
-            .ToList()
-            .Select(r => (Carr)r.Content)
-            .First(x => x.JobInfos.Any(y => y.JobName == "Ringmaster"));
-        carrs.JobInfos.Last().EnergyDecay.Value = 0;
+        var carrs = iff.Resources.Where(r => r.TypeCode.Value == "CARR").ToList();
+        foreach (var carr in carrs)
+        {
+            foreach (var ji in ((Carr)carr.Content).JobInfos)
+            {
+                ji.EnergyDecay.Value = 0;
+            }
+        }
         iff.Write("test.iff");
     }
 }
